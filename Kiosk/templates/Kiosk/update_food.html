@@ -1,0 +1,47 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="card">
+
+            <div class="card-header">
+                <h5 class="card-title"> Update food details</h5>
+            </div>
+
+                <form class="add-form container-fluid" method="POST" action="{% url 'update_food' pk=f.pk %}"> {% csrf_token %}
+                    <div class="form-group">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                    <p style="color:red">{{ message }}</p>
+                                {% else %} 
+                                    <p style="color:green">{{ message }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <label for="Food"> Food </label>
+                        <input type="text" class="form-control" id="name" name="name" value='{{f.name}}'>
+                        <label for="Desc"> Description: </label>
+                        <input type="text" class="form-control" id="desc" name="desc" value='{{f.desc}}'>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Price"> Price: </label>
+                                    <input type="text" class="form-control" id="price" name="price" value='{{f.price}}'>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Date"> Date: </label>
+                                    <input type="datetime" class="form-control" id="created_at" name="created_at" value='{{f.created_at|date:'Y-m-d h-i'}}'>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-3 btn btn-primary float-right">Update</button>
+                </form>
+        </div>
+    </div>
+{% endblock %}

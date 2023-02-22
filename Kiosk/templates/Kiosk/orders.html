@@ -1,0 +1,29 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="col-12">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col"> Food </th>
+				<th scope="col"> Quantity </th>
+				<th scope="col"> Ordered at </th>
+				<th scope="col"> Customer </th>
+				<th scope="col"> Mode of Payment </th>
+				<th scope="col"></th>
+			</thead>
+			<tbody>
+				{% for o in order %}
+				<tr>
+					<td> {{ o.food.name }} </td>
+					<td> {{ o.qty }} </td>
+					<td> {{ o.ordered_at|date:'Y-m-d h-i' }} </td>
+					<td> {{o.cust_order.name}} </td>
+					<td> {{o.payment_mode}} </td>
+					<td><a href="{% url 'view_order_details' pk=o.pk %}"  class="btn btn-dark">Details</button></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

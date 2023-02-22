@@ -1,0 +1,25 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="col-12">
+		<table class="table table-striped">
+			<thead>
+				<th scope="col"> Name </th>
+				<th scope="col"> Address </th>
+				<th scope="col"> City </th>
+				<th scope="col"></th>
+			</thead>
+			<tbody>
+				{% for c in customer %}
+				<tr>
+					<td> {{ c.name }} </td>
+					<td> {{ c.address }} </td>
+					<td> {{ c.city }} </td>
+					<td><a href="{% url 'view_customer_details' pk=c.pk %}"  class="btn btn-dark">Details</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

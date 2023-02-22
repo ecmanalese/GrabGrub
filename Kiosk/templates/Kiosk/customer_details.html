@@ -1,0 +1,31 @@
+    {% extends 'Kiosk/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="card">
+
+            <div class="card-header">
+                <h5 class="card-title"> Update customer details</h5>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <p style="color:red">{{ message }}</p>
+                    {% else %} 
+                        <p style="color:green">{{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+                <form class="add-form container-fluid" method="POST" action="{% url 'update_customer' pk=c.pk %}"> {% csrf_token %}
+                    <div class="form-group">
+                        <p"> Customer Name: {{c.name}}</p>
+                        <p> Address: {{c.address}}</p>
+                        <p> City: {{c.city}} </p>
+                    </div>
+                    <a href="{% url 'update_customer' pk=c.pk %}"  class="btn btn-success">Update</a>
+					<a href="{% url 'delete_customer' pk=c.pk %}"  class="btn btn-danger">Delete</a>
+                </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>GrabGrub</title>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@700&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Signika+Negative:wght@700&display=swap">
+		<link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static '/bootstrap/css/custom.css' %}">
+
+		<script src="{% static '/bootstrap/jquery-3.4.1.slim.min.js' %}"></script>
+		<script src="{% static '/bootstrap/popper.min.js' %}"></script>
+		<script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script> 
+	</head>
+	<body>
+		<nav class="navbar navbar-dark bg-custom mb-3 sticky-top" style="background-color: orangered;">
+			<a class="navbar-brand mb-0" href="{% url 'view_orders' %}" style="color:white">GrabGrub</span> </a>
+			<a class="navbar-brand mb-0" href="{% url 'add_food' %}" style="color:white">+ Add Food</a>
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-2">
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link float-left position-fixed navc" href="{% url 'view_orders' %}" >Orders</a>
+						</li>
+						<br>
+						<br>
+						<li class="nav-item">
+							<a class="nav-link float-left position-fixed navc" href="{% url 'view_food' %}">Food Items</a>
+						</li>
+						<br>
+						<br>
+						<li class="nav-item">
+							<a class="nav-link float-left position-fixed navc" href="{% url 'view_customer' %}" >Customers</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-10">
+				{% block content %}
+				{% endblock %}
+				</div>
+			</div>
+		</div>  
+		
+		<footer class="footer bg-custom position-fixed" style="background-color: orangered;">
+			<!-- Copyright -->
+			<div class="container" style="color: white">@GrabGrub | &copy; 2021 | GrabGrub.tv</div>
+			<!-- Copyright -->    
+		</footer>
+	</body>
+</html>
